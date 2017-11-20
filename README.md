@@ -1,4 +1,7 @@
-title: Learning Deep Neural Network Policies
+---
+title: Training Deep Neural Network Policies
+subtitle: a general study in simulation
+layout: default
 ---
 ## Why this post?
 
