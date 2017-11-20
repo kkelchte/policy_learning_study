@@ -4,7 +4,7 @@ This blog came to live in the prospect of a paper. As I'm not such an experience
 The tasks are trained and evaluated in simulation. There are different simulated tasks: canyon following, obstacle avoidance in a cylinder forest and obstacle avoidance in a sandbox of objects. 
 The drone flies (for now) at fixed height and speed. The navigation is controlled by turning in the yaw directions with -1:1. There is an example policy based on the groundtruth kinect that demonstrates a good behavior, further referred to as the expert.
 
-``` You can redo the experiments within a docker image kkelchte/ros_gazebo_tensorflow with the following packages: [drone simulator](https://github.com/kkelchte/hector_quadrotor), [simulation-supervised](https://github.com/kkelchte/simulation_supervised) package and [pilot](https://github.com/kkelchte/pilot) package. This is also explained on the [try-it](https://kkelchte.github.io/doshico/try) page of the Doshico challenge. ```
+>You can redo the experiments within a docker image kkelchte/ros_gazebo_tensorflow with the following packages: [drone simulator](https://github.com/kkelchte/hector_quadrotor), [simulation-supervised](https://github.com/kkelchte/simulation_supervised) package and [pilot](https://github.com/kkelchte/pilot) package. This is also explained on the [try-it](https://kkelchte.github.io/doshico/try) page of the Doshico challenge.
 
 ## Output layer
 In general a policy maps from state to action space. A neural network can predict both discrete as continuous outputs. Most success stories in computer vision are visible in both classification tasks (semantic segmentation, scene recognition, action recognition) as regression tasks (Optical Flow or Depth prediction). 
@@ -15,10 +15,10 @@ Most DNN policies from the last years are using discrete action spaces. A discre
 
 Moreover, as a continuous actions space obtains infinitely more options, one can guess that it will require much more training time and data (2).
 
-> Claims:
-- Discrete ‘fires’ of a discrete action space can be interpreted as how certain a policy is.
-- The more discrete actions as well as continuous action space requires more training time and data before convergence.
-- Continuous action-space results in a smoother policy as well as higher robustness for different speeds.
+_Claims:_
+- _Discrete ‘fires’ of a discrete action space can be interpreted as how certain a policy is._
+- _The more discrete actions as well as continuous action space requires more training time and data before convergence._
+- _Continuous action-space results in a smoother policy as well as higher robustness for different speeds._
 
 
 ### Markdown
