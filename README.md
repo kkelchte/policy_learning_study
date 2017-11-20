@@ -22,9 +22,9 @@ _Claims:_
 
 ### Experiments
 
-- [ ] **Uncertainty**: Train a discrete policy with 17 control options from -1 to 1 and see if they fire according to probabilities. 
-- [ ] **Discretization speeds up training**: Train policies at different levels of discretization (3, 9, 17, 65, inf) and see the influence on training time, data and stability. The task is canyon following in simulation.
-- [ ] **Quantization noise can lead to fatal crashes**: Train policies at different levels of discretization (3, 9, 17, 65, inf) for 3 sets of speeds (0.5m/s, 1.0m/s and 1.5m/s). Compare the performances with higher levels of quantization noise.
+- [x] **Uncertainty**: Train a discrete policy with 17 control options from -1 to 1 and see if they fire according to probabilities. 
+- [x] **Discretization speeds up training**: Train policies at different levels of discretization (3, 9, 17, 65, inf) and see the influence on training time, data and stability. The task is canyon following in simulation.
+- [x] **Quantization noise can lead to fatal crashes**: Train policies at different levels of discretization (3, 9, 17, 65, inf) for 3 sets of speeds (0.5m/s, 1.0m/s and 1.5m/s). Compare the performances with higher levels of quantization noise.
 
 
 
