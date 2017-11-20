@@ -22,9 +22,20 @@ _Claims:_
 
 ### Experiments
 
-- [x] **Uncertainty**: Train a discrete policy with 17 control options from -1 to 1 and see if they fire according to probabilities. 
-- [x] **Discretization speeds up training**: Train policies at different levels of discretization (3, 9, 17, 65, inf) and see the influence on training time, data and stability. The task is canyon following in simulation.
-- [x] **Quantization noise can lead to fatal crashes**: Train policies at different levels of discretization (3, 9, 17, 65, inf) for 3 sets of speeds (0.5m/s, 1.0m/s and 1.5m/s). Compare the performances with higher levels of quantization noise.
+1. **Uncertainty**: Train a discrete policy with 17 control options from -1 to 1 and see if they fire according to probabilities. 
+2. **Discretization speeds up training**: Train policies at different levels of discretization (3, 9, 17, 65, inf) and see the influence on training time, data and stability. The task is canyon following in simulation.
+3. **Discretization comes with severe Quantization Noise**: Train policies at different levels of discretization (3, 9, 17, 65, inf) for 3 sets of speeds (0.5m/s, 1.0m/s and 1.5m/s). Compare the performances with higher levels of quantization noise.
 
 
-
+Network   | Training Steps  | Distance @ 0.5 (#successes)   | Distance @ 1.0 (#successes) | Distance @ 1.5 (#successes)
+----------|-----------------|-------------------------------|-----------------------------|----------------------------
+Mobile-3  |					|								|							  |
+Mobile-9  |					|								|							  |
+Mobile-17 |					|								|							  |
+Mobile-65 |					|								|							  |
+Mobile-inf|					|								|							  |
+Resnet-3  |					|								|							  |
+Resnet-9  |					|								|							  |
+Resnet-17 |					|								|							  |
+Resnet-65 |					|								|							  |
+Resnet-inf|					|								|							  |
