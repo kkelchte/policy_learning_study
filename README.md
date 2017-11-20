@@ -1,8 +1,3 @@
----
-title: Training Deep Neural Network Policies
-layout: default
----
-
 ## Why this post?
 
 This blog came to live in the prospect of a paper. As I'm not such an experienced writer, I found that writing ideas down on a place that others can see helps to clearify them. This post is about **training deep neural network policies** for the task of **autonomous navigation** based on high dimensional rgb images. Many success stories are out there but a proper comparison of different training settings seems to lack. Possible decisions are: what kind of output should my network predict, what is the influence of recurrency,  what is the most (data/time/stability) efficient way of providing the data, … . The influence of these decisions is evaluated in task-specific performance (average collision-free distance travelled, success rate), absolute training time, data efficiency, stability over different seeding, stability over different hyperparameters, generalization in new test performances, … . 
