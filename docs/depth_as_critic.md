@@ -51,17 +51,48 @@ In case of continuous action space, it is best to train the policy in an actor-c
 
 ## Implementation steps
 
-* Create basic Q-net architecture: Imagenet Pretrained Mobilenet 0.5 with depth prediction layers and action concatenation (today)
-* Train Q-net to predict next frame and explore variance over different actions _crucial_ (tonight + wednesday)
-* Adjust architecture for 3 discrete control values: -1, 0, 1 with 3 representative depth maps (thursday)
-* Train Q-net to predict next 3 potential outcomes. (thursday night)
-* Test policy by taking max over 3 potential predicted depth maps (friday)
-	* --> can this fly in training world? (canyon)
-	* --> can this fly in test world? (forest / esat)
-	* --> can this steer in real world (bebop)
+There are different ways of implementing the dept-Q-network and extracting a policy from it.
 
+The most straight-forward way is to train a basic depth predictor given 1 image. The predicted depth map can be rasterized with each bin representing a control combination. This method will further be referred to as the naive approach.
 
+We could take things further by training a depth-predictor for each discrete output. This will not scale very well but hopefully different networks will be better at predicting when focussing only on a certain set of controls. Lets say a turn-left depth-predictor and a turn-right depth-predictor. In this case the focus lies more in the future. The advantage here is that the rasters of the depth map from the naive approach are not so representative as Q-values according to different actions. In the setting of training an end-to-end policy, you want variations over different sets actions to be taken into account by the policy instead of by the heuristic that interprets the depth map. We will call this approach 3-q-learning as we will work with 3 depthmaps corresponding for turning left, flying straight and turning right.
 
+The 3-q-net will hopefully be already an improvement over the naive approach, though it can't handle a continuous action space, nor is it computationwise interesting to work with more discrete outputs due to the exponential growth of the network. Therefor we present a final implementation in which case the action is taken as input. The depth network is used as a real Q value taken the state (image) and action as input and predicts a future depth map. Training a policy is than done by flowing the gradients over the depth map back through the predicted action of the policy. The policy will be a separate network with feature extracting layers initialized with the weights of the depth q network to speed up training. Two fully connected layers estimate a control with the predicted depth map from the depth-Q-net as an objective function that needs to be maximized.
 
+The main issue of the depth-Q-net is that the frames on which the depth is predicted only takes current frame and action into account without coping with potential drift that can severly influence the next depth frames. It will therefor be good to work with several frames concatenated to get some sense of time, or even better is to work with an LSTM.
 
+These five implementations should be compared on the canyon task and maybe in the real world. 
 
+## Experiments
+
+* Test naive approach online on groundtruth depth in canyon. Why? 
+	* To get an intuition of how good the naive approach can get.
+* Test 3-q-net approach online on groundtruth depth from recovery cameras in canyon. Why? 
+	* To get an intuition of how good the 3-q-net approach can get. 
+	* To see if the depth is consistently lower on the recovery cameras.
+	* To see if this approach outperforms the naive approach. 
+* Train a policy from a depth-Q-net in continuous actions space and see for its performance.
+* Train a depth-Q-net and next a policy with n_fc architecture
+* Train a depth-Q-net and next a policy with lstm architecture
+
+### Naive approach
+
+Experimented with ground truth depth: sum over left half, center half and right halve. Taking the max over these three values and turn in that direction. 
+This works fine as a heuristic to fly through the canyon up to 1.8m/s speed.
+
+Experimenting with network trained. There was a clear over confidence on flying straight. In the situation of only 2 options left and right, the network could fly 2 out of 3 times at a speed of 0.5m/s. The speed had to be adjusted due to delays.
+
+### 3-Depth-Q approach
+
+Experimented with ground truth depth and recovery cameras. Taking max of summing over each (subsampled) camera depth frame.
+Works fine.
+
+Experimenting with the trained network that predicts 3 depth maps for each action did not turn out so well. It seemed to be very unstable. One direction gets the preference and it sticks to it... The depth maps also did not appear so different. 
+
+It might be better to train the network on data from recovery cameras and focussing on the differences between two actions rather than estimating for one action.
+
+TODO: train offline on data captured from recovery cameras, though I would think that in this situation it will for the canyon task just overfit to one wall or the other.
+
+### Depth-Q approach
+
+TODO: implement policy training
