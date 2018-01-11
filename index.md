@@ -9,6 +9,7 @@ The drone flies (for now) at fixed height and speed. The navigation is controlle
 >You can redo the experiments within a docker/singularity image kkelchte/ros_gazebo_tensorflow with the following packages: [drone simulator](https://github.com/kkelchte/hector_quadrotor), [simulation-supervised](https://github.com/kkelchte/simulation_supervised) package and [pilot](https://github.com/kkelchte/pilot) package. This is also explained on the [try-it](https://kkelchte.github.io/doshico/try) page of the Doshico challenge.
 
 #### [Changing the Output Layer](./docs/output.md)
+#### [Reinforcement Learning](./docs/depth_as_critic.md)
 #### [Changing the Labels: Behavioral Cloning vs Reinforcement Learning](./docs/labels.md)
 #### [Adding Recurrency in the Architecture](./docs/recurrency.md)
 #### [Feeding the Data](./docs/data.md)
