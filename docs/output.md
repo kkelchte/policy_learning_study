@@ -26,6 +26,8 @@ _Claims:_
 3. **Discretization comes with Quantization Noise**: Test policies of different levels of discretization (3, 9, 17, 65, inf) on 3 sets of speeds (0.5m/s, 1.0m/s and 1.5m/s). Compare the performances with higher levels of quantization noise. _Remark: Smoother control is hard to define experimentally. With this experiment we can only measure the adaptability of a network to different speeds. The distribution of predicted controls will differ from the training setting, and the more robust the network the better it can adjust its prediction. In order to detect the different speed, the model requires a sense of time which is possible in an n_fc network (n features concatenated before the fc-control-layers). This does not represent the impact of quantization noise. The quantization noise might be visible at higher speeds in smaller canyons in which case a small error has large impact. The forest might be a better setting to test this as the example control is more distributed around 0._
 
 
+**As long as target distribution is bad, not intermediate nodes will learn properly resulting in bad models, better to start off with RL signal and training.**
+
 Network    | Training Steps  | Distance @ 0.5 (#successes)   | Distance @ 1.0 (#successes) | Distance @ 1.5 (#successes)
 -----------|-----------------|-------------------------------|-----------------------------|----------------------------
 Mobile-3   |        					|								|							  |
